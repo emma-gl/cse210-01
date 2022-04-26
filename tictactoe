@@ -18,23 +18,39 @@ def play():
     print("Thanks for playing!")
 
 def is_game_notover(game):
-    # horizontal
+     # horizontal
     for row in range(3):
         if game[row][0] == game[row][1] == game[row][2]:
-            return row[0] + " won!"
+            make_board(game)
+            print(f"{game[row][0]} won!")
+            return False
     # vertical
     for i in range(3):
         if game[0][i] == game[1][i] == game[2][i]:
-            return game[0][i] + " won!"
+            make_board(game)
+            print(f"{game[0][i]} won!")
+            return False
     # diagonal
     if game[0][0] == game[1][1]  == game[2][2]:
-        return game[1][1] + " won!"
+        make_board(game)
+        print(f"{game[0][0]} won!")
+        return False
     if game[2][0] == game[1][1] == game[0][2]:
-        return game[1][1] + " won!"
+        make_board(game)
+        print(f"{game[2][0]} won!")
+        return False
     #full
-    for row in range(3):
-        if isinstance(game[row][0],str) and isinstance(game[row][1],str) and isinstance(game[row][2],str):
-            return "Draw! Board is full"
+    if game[0][0] == game[0][1] == game[0][2]:
+        make_board(game)
+        print(f"{game[0][0]} won!")
+        return False
+    if isinstance(game[0][0],str) and isinstance(game[1][1],str) and isinstance(game[2][2],str) \
+    and isinstance(game[0][1],str) and isinstance(game[0][2],str) and isinstance(game[1][0],str) \
+    and isinstance(game[1][2],str) and isinstance(game[2][0],str) and isinstance(game[2][1],str):
+        make_board(game)
+        print("Draw! Board is full")
+        return False
+    #Keep playing
     return True
         
 def start():
